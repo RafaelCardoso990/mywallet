@@ -1,0 +1,21 @@
+*{
+  text-decoration: none;
+}
+
+body {
+    box-sizing: border-box;
+    word-wrap: wrap;
+    margin: 0;
+    font-family: 'Saira Stencil One', cursive;
+    font-family: 'Raleway', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #8C11BE;
+    
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
