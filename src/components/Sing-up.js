@@ -3,23 +3,26 @@ import axios from 'axios';
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
 
-function MainPage() {
-    const navigate = useNavigate()
+function SignUp() {
+    const navigate = useNavigate();
 
     const [record, setRecord] = useState({
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        checkPassword: '',
     })
 
-    console.log(record)
-    const signIn = async () => {
+    const SignUp = async () => {
         try{
-            await axios.post('http://localhost:5000/sign-in', {
+            await axios.post('http://localhost:5000/sign-up', {
+                name: record.name,
                 email: record.email,
-                password: record.password
+                password: record.password,
+                checkPassword: record.checkPassword
             })
-            alert("Login feito com sucesso!")
-            navigate("/records")            
+            alert("cadastro feito com sucesso!")
+            navigate('/') 
         } catch(e){
             console.log("error",e.response.data)
             alert(`Ops, ocorreu um erro! ${e.response.data}`)
@@ -34,11 +37,13 @@ function MainPage() {
         <Main>
             <h1>MyWallet</h1>
             <div>
+                <input type='text' placeholder="Name" name="name" value={record.name} onChange={handleFormChange}></input>
                 <input type='text' placeholder="E-mail" name="email" value={record.email} onChange={handleFormChange}></input>
                 <input type='password' placeholder="Senha" name='password' value={record.password} onChange={handleFormChange}></input>
-                <button onClick={signIn}>Entrar</button>
+                <input type='password' placeholder="Confirme a senha" name='checkPassword' value={record.checkPassword} onChange={handleFormChange}></input>
+                <button onClick={SignUp}>Entrar</button>
             </div>
-            <Link to="/sign-up"><h2>Primeira vez? Cadastre-se!</h2></Link>
+            <Link to="/"><h2>Já tem uma conta? Entre agora!</h2></Link>
         </Main>
     )
 }
@@ -110,4 +115,4 @@ const Main = styled.main`
     }
 `
 
-export default MainPage;
+export default SignUp;
