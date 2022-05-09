@@ -2,28 +2,31 @@ import { useState, useContext } from 'react'
 import axios from 'axios';
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
+import UserContext from '../assets/context/UserContext';
 
-function MainPage() {
-    const navigate = useNavigate()
+function SignIn() {
+    const context = useContext(UserContext)
+
+    const navigate = useNavigate()    
 
     const [record, setRecord] = useState({
         email: '',
         password: ''
     })
 
-    console.log(record)
-    const signIn = async () => {
-        try{
-            await axios.post('http://localhost:5000/sign-in', {
+    
+    function signIn(){
+        const promise = axios.post('http://localhost:5000/sign-in', {
                 email: record.email,
                 password: record.password
-            })
+            })    
+        promise.then(response =>{    
+            const {data} = response
+            console.log(data)
             alert("Login feito com sucesso!")
+            context.setToken(data)
             navigate("/records")            
-        } catch(e){
-            console.log("error",e.response.data)
-            alert(`Ops, ocorreu um erro! ${e.response.data}`)
-        }
+        })
     }
 
     const handleFormChange = (e) => {
@@ -110,4 +113,4 @@ const Main = styled.main`
     }
 `
 
-export default MainPage;
+export default SignIn;

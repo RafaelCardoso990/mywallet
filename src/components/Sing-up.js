@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom'
@@ -41,7 +41,7 @@ function SignUp() {
                 <input type='text' placeholder="E-mail" name="email" value={record.email} onChange={handleFormChange}></input>
                 <input type='password' placeholder="Senha" name='password' value={record.password} onChange={handleFormChange}></input>
                 <input type='password' placeholder="Confirme a senha" name='checkPassword' value={record.checkPassword} onChange={handleFormChange}></input>
-                <button onClick={SignUp}>Entrar</button>
+                <button onClick={SignUp}>Cadastrar</button>
             </div>
             <Link to="/"><h2>Já tem uma conta? Entre agora!</h2></Link>
         </Main>
